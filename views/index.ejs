@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1>URL SHRINKER</h1>
-        <form action="" method="POST" class="my-4 form-inline">
+        <form action="/shortUrls" method="POST" class="my-4 form-inline">
             <label for="fullUrl" class="sr-only">Url</label>
             <input required placeholder="url" type="url" name="fullUrl" id="fullUrl" class="form-control col mr-2">
             <button class="btn btn-success" type="submit">Shrink</button>
@@ -25,11 +25,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a href="http://perezc.netlify.app">http://perezc.netlify.app</a></td>
-                    <td><a href="/1234">1234</a></td>
-                    <td>10</td>
-                </tr>
+                <% shortUrls.forEach(shortUrl => { %> 
+                    <tr>
+                        <td><a href="<%= shortUrl.full %>"><%= shortUrl.full %></a></td>
+                        <td><a href="<%= shortUrl.short %>"><%= shortUrl.short %></a></td>
+                        <td><%= shortUrl.clicks %></td>
+                    </tr>
+                <% }) %>
             </tbody>
         </table>
     </div>
